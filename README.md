@@ -50,7 +50,7 @@ This application uses **PostgreSQL** as its persistence layer, managed through P
    
    Create a `.env` file in the root directory:
    ```bash
-   DATABASE_URL="postgresql://user:password@localhost:5432/pastebin?schema=public"
+   DATABASE_URL="postgresql://neondb_owner:npg_a0No8pAqtJPE@ep-dry-sound-a1idmul1-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
    PORT=3000
    BASE_URL=http://localhost:3000
    TEST_MODE=0
