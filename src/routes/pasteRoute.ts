@@ -11,8 +11,5 @@ const router = express.Router();
 router.post("/", createPaste);
 router.get("/:id", getPasteById);
 
-// HTML view route (no /api prefix)
-// This will be mounted at /p so becomes /p/:id
-router.get("/:id", viewPasteHtml);
 
 export default router;

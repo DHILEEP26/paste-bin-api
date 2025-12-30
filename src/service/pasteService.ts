@@ -59,18 +59,30 @@ export const getPasteById = async (
     return null;
   }
 
-  // Decrement view count if this is an API fetch
+  // Decrement view count if needed
   let remainingViews = paste.remainingViews;
   if (decrementView && paste.remainingViews !== null) {
-    const updated = await prisma.paste.update({
-      where: { id },
-      data: {
-        remainingViews: {
-          decrement: 1,
+    // Check if this is the last view
+    if (paste.remainingViews === 1) {
+      // This is the last view - update and return, but mark as expired
+      await prisma.paste.update({
+        where: { id },
+        data: {
+          remainingViews: 0,
         },
-      },
-    });
-    remainingViews = updated.remainingViews;
+      });
+      remainingViews = 0;
+    } else {
+      const updated = await prisma.paste.update({
+        where: { id },
+        data: {
+          remainingViews: {
+            decrement: 1,
+          },
+        },
+      });
+      remainingViews = updated.remainingViews;
+    }
   }
 
   return {

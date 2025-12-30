@@ -112,7 +112,7 @@ export const viewPasteHtml = async (
     const { id } = req.params;
     const currentTime = getCurrentTime(req);
 
-    const paste = await PasteService.getPasteById(id, currentTime, false);
+    const paste = await PasteService.getPasteById(id, currentTime, true);
 
     if (!paste) {
       res.status(404).send(`
